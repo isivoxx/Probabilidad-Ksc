@@ -9,12 +9,26 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## 1)
+## Deberes del Torok
+
+Primera entrega:
+Compute point estimation for the expectation m and variance sigma^2 for samples x1 and x2
+```{r}
+set.seed(123)
+x1=rnorm(100)
+x2=rnorm(100,2)
+
+media=mean(x1)
+
+desviacion=sd(x1)
 
 
+```
+b) one and two sided confidence intervals for x1
 ```{r}
 
 ```
+
 
 ## 2) 
 
