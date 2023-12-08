@@ -136,3 +136,62 @@ k = c(1,2,3)
 prob = c(0.2,0.5,0.3)
 x = sample(k,n,prob,replace=TRUE)
 ```
+
+---
+
+#Examen
+
+Sea X=1/10*sum(Yi) con i de 1 a 50 e Yi = U(0,10)
+
+#1. Simula 5000 valores aleatorios de X
+```{r}
+
+n = 5000
+
+x = replicate(n,{
+  y=runif(50,0,10)
+  sum(y)/10
+})
+
+```
+
+# 2. Calcula su esperanza y P(25<X<=30)
+```{r}
+
+mean(x)
+sum(x>25 & x<=30)/n
+```
+
+
+# 3. Dibuja la función distribución empírica de X 
+```{r}
+  
+library(ggplot2) #Instruccion para cargar el paquete ggplot 2
+
+g1 = ggplot(data = NULL,aes(x))+stat_ecdf(col="orange", size=1.3)+ # Instruccion para dibujar la ECDF
+  labs(x ="", y="Funciones de distribución")+  # Anadir etiquetas a los ejes
+  ggtitle("Estimación de la función de distribución de la variable X comparando con distintas distribuciones normales")# Anadir un título al grafico
+
+g1 
+
+```
+
+# 4. Compara graficamente la función distribución de X con N(20,2), N(25,2) y N(25,3)
+
+```{r}
+t = seq(0,50,0.01)
+
+n20 = pnorm(t,20,2)
+n252 = pnorm(t,25,2)
+n253 = pnorm(t,25,3)
+
+
+
+g2 = g1 + geom_line(aes(x=t,y=n20),col='red',size=1)
+g3 = g2 + geom_line(aes(x=t,y=n252),col='blue',size=1)
+g4 = g3 + geom_line(aes(x=t,y=n253),col='green',size=1) 
+g4
+```
+
+
+Se parece bastante a la azul, N(25,2)
