@@ -12,7 +12,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Deberes del Torok
 
 Primera entrega:
-Compute point estimation for the expectation m and variance sigma^2 for samples x1 and x2
+Compute 
+a) point estimation for the expectation m and variance sigma^2 for samples x1 and x2
 ```{r}
 set.seed(123)
 x1=rnorm(100)
@@ -29,6 +30,25 @@ b) one and two sided confidence intervals for x1
 
 ```
 
+c) write a function for b) wit input x and let it return the endpoints of interval (use a list)
+```{r}
+
+```
+
+Add a row to a DF!
+```{r}
+
+```
+
+Add a column to a DF!
+```{r}
+
+```
+
+Add a new element to a List!
+```{r}
+
+```
 
 ## 2) 
 
@@ -37,11 +57,4 @@ You can also embed plots, for example:
 ```{r}
 
 ```
-
-## ) wdhuewideiwdnwncje
-```{r}
-
-```
-
-
 
