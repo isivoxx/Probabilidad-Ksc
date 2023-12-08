@@ -1,0 +1,26 @@
+---
+title: "Script Estadistica"
+author: "Jaime Rodrigo Roldán Corcelles"
+date: "2023-12-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## 1)
+
+
+```{r}
+
+```
+
+## 2) 
+
+You can also embed plots, for example:
+
+```{r}
+
+```
+
