@@ -1,0 +1,138 @@
+---
+title: "EjerciciosPyE"
+author: "Iván"
+date: "2023-12-08"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+Valor de la densidad de una N (0, 1) en el punto 0.3
+```{r}
+dnorm(0.3,0,1) 
+```
+FN (0,1)(0,3) = P(N(0,1)<=0.3), valor de la CDF en 0.3
+
+```{r}
+pnorm(0.3,0,1) 
+```
+Primer cuantil de una N(0,1) -> qnorm es la funcion inversa de la CDF
+
+
+```{r}
+qnorm(0.25,0,1)
+pnorm(qnorm(0.25,0,1),0,1)
+```
+
+
+# Ejercicio 1
+
+X sigue una poisson 6, hallar Probabilidad X=10
+```{r}
+
+dpois(10,6)
+```
+
+
+b) prob X a lo sumo 5
+
+```{r}
+ppois(5,6)
+```
+
+c) menor valor de x para q P(X<=x)>=0.10
+```{r}
+qpois(0.1,6)
+```
+
+
+
+# Ejercicio 2
+X exponencial de media 2 - lambda es 0.5
+
+a) densidad en 1
+```{r}
+dexp(1,0.5)
+```
+
+
+b) prob valor no supere 2.5
+
+```{r}
+pexp(2.5,0.5)
+```
+
+c) punto que deja por debajo el 0.8
+```{r}
+qexp(0.8,0.5)
+```
+
+
+
+# Ejercicio 3
+
+12 valores aleatorios de una unif (0,1)
+```{r}
+
+runif(12,0,1)
+matrix(runif(12,0,1),nrow=2) # anterior pero en matrix 2x6
+```
+
+
+# Ejercicio 4
+
+Binomial 5 0.4, 100 valores
+
+```{r}
+x = rbinom(100,5,0.4)
+
+p = c()
+
+for (i in 0:5){
+  p[i+1]=sum(x==i)/100
+  } # prob de cada elemento
+
+p
+
+mean(x)
+sd(x) # desviacion tipica
+```
+
+
+
+# Ejercicio 5
+
+
+```{r}
+x = rnorm(10000,0,1) # normal de dist N(0,1) con 10000 valores
+
+xcdf = ecdf(x) #funcion distribucion
+plot(xcdf)
+
+xcdf(0) 
+
+library(ggplot2) #Instruccion para cargar el paquete ggplot 2
+ggplot(data = NULL,aes(x))+
+  stat_ecdf(col="red", size=1.2)+ # Instruccion para dibujar la ECDF
+  labs(x ="", y="Funcion de distribucion empırica")+
+  # Anadir etiquetas a los ejes
+  ggtitle("Estimacion de la funcion de distribucion de una N(0,1)")
+# Anadir un tıtulo al grafico
+
+quantile(x,0.95) 
+```
+
+# Ejericio 6
+
+
+
+```{r cars}
+n = 100
+k = c(1,2,3)
+prob = c(0.2,0.5,0.3)
+x = sample(k,n,prob,replace=TRUE)
+```
