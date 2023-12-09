@@ -177,11 +177,107 @@ print(df)
 
 ```
 
-## 2) 
-
-You can also embed plots, for example:
+## Tests de Hipotesis
 
 ```{r}
+y1 = c(8.0, 9.4, 8.4, 8.6, 8.7, 8.5, 8.5);
+y2 = c(8.6, 8.9, 8.8, 8.9, 8.7, 8.6, 9, 8.5, 8.6, 8.7, 8.7);
 
+```
+
+
+##### H0: S1 = S2,  H1: S1 != S2
+```{r}
+twosampleVarEqual = function(x,y, alfa){
+  
+  v1=var.test(x, y, alternative = "two.sided")
+  
+  if(v1$p.value < alfa){
+    print("H0 is rejected")
+  } else {
+    print("H0 is not rejected")
+  }
+}
+
+twosampleVarEqual(y1,y2,0.05)
+
+```
+##### H0: S1 = S2,  H1: S1 < S2
+```{r}
+twosampleVarLess = function(x,y, alfa){
+  
+  v1=var.test(x, y, alternative = "less")
+  
+  if(v1$p.value < alfa){
+    print("H0 is rejected")
+  } else {
+    print("H0 is not rejected")
+  }
+}
+
+twosampleVarLess(y1,y2,0.05)
+```
+##### H0: S1 = S2,  H1: S1 > S2
+```{r}
+twosampleVarGreater = function(x,y, alfa){
+  
+  v1=var.test(x, y, alternative = "greater")
+  
+  if(v1$p.value < alfa){
+    print("H0 is rejected")
+  } else {
+    print("H0 is not rejected")
+  }
+}
+
+twosampleVarGreater(y1,y2,0.05)
+```
+
+
+
+##### H0: m1 = m2,  H1: m1 != m2
+```{r}
+twosampleT_testEqual = function(x,y, alfa){
+  
+  v1=t.test(x, y, alternative = "two.sided")
+  
+  if(v1$p.value < alfa){
+    print("H0 is rejected")
+  } else {
+    print("H0 is not rejected")
+  }
+}
+
+twosampleT_testEqual(y1,y2,0.05)
+```
+##### H0: m1 = m2,  H1: m1 < m2
+```{r}
+twosampleT_testLess = function(x,y, alfa){
+  
+  v1=t.test(x, y, alternative = "less")
+  
+  if(v1$p.value < alfa){
+    print("H0 is rejected")
+  } else {
+    print("H0 is not rejected")
+  }
+}
+
+twosampleT_testLess(y1,y2,0.05)
+```
+##### H0: m1 = m2,  H1: m1 > m2
+```{r}
+twosampleT_testGreater = function(x,y, alfa){
+  
+  v1=t.test(x, y, alternative = "greater")
+  
+  if(v1$p.value < alfa){
+    print("H0 is rejected")
+  } else {
+    print("H0 is not rejected")
+  }
+}
+
+twosampleT_testGreater(y1,y2,0.05)
 ```
 
