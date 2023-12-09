@@ -11,42 +11,169 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Deberes del Torok
 
-Primera entrega:
-Compute 
+#Primera entrega:
+Compute:
 a) point estimation for the expectation m and variance sigma^2 for samples x1 and x2
 ```{r}
 set.seed(123)
 x1=rnorm(100)
 x2=rnorm(100,2)
 
-media=mean(x1)
+media=mean(x1); media
 
-desviacion=sd(x1)
+desviacion=sd(x1); desviacion
+varianza=var(x1) ; varianza
+
+
 
 
 ```
 b) one and two sided confidence intervals for x1
 ```{r}
 
+#MEDIA
+#ONE SIDED
+
+alfa=0.05 #máximo error que queremos cometer (p-value)
+gamma=1- alfa #probabilidad que queremos que caiga dentro de nuestro intervalo
+n=length(x1)
+t_gamma=qt(gamma, n-1)
+
+mD1=media-t_gamma*desviacion/sqrt(n)
+mH1=media+t_gamma*desviacion/sqrt(n)
+
+intervalo_bajo=c('- infinito', mD1) ; intervalo_bajo
+
+intervalo_alto=c(mH1,'infinito') ; intervalo_alto
+
+#TWO SIDED
+
+t_gamma1medios=qt((gamma+1)/2,n-1)
+mD2=media-t_gamma1medios*desviacion/sqrt(n)
+mH2=media+t_gamma1medios*desviacion/sqrt(n)
+
+intervalo=c(mD2,mH2); intervalo
+
+#VARIANZA
+
+#ONE SIDED
+
+chi_gamma=qchisq(gamma,n-1)
+chi_1menosgamma=qchisq(1-gamma,n-1)
+
+varD1=(n-1)*varianza/chi_gamma
+varH1=(n-1)*varianza/chi_1menosgamma
+
+intervalo_bajo=c('- infinito', varD1) ; intervalo_bajo
+
+intervalo_alto=c(mH1,'infinito', varH1) ; intervalo_alto
+
+#TWO SIDED
+
+chi_1masgammamedios=qchisq((1+gamma)/2,n-1)
+chi_1menosgammamedios=qchisq((1-gamma)/2,n-1)
+
+varD2=(n-1)*varianza/chi_1masgammamedios
+varH2=(n-1)*varianza/chi_1menosgammamedios
+
+intervalo=c(varD2,varH2); intervalo
+
+
 ```
 
 c) write a function for b) wit input x and let it return the endpoints of interval (use a list)
 ```{r}
+intervalo_confi=function(x){
+  alfa=0.05 #máximo error que queremos cometer (p-value)
+  gamma=1- alfa #probabilidad que queremos que caiga dentro de nuestro intervalo
+  n=length(x1)
 
+  t_gamma1medios=qt((gamma+1)/2,n-1)
+  mD2=media-t_gamma1medios*desviacion/sqrt(n)
+  mH2=media+t_gamma1medios*desviacion/sqrt(n)
+  
+  intervalo=list(low=mD2,high=mH2)
+  intervalo
+}
+print(intervalo_confi(x))
 ```
 
+#Segunda Entrega
 Add a row to a DF!
 ```{r}
+# Crear un DataFrame de ejemplo
+df <- data.frame(
+  Nombre = c("Juan", "María", "Carlos"),
+  Edad = c(25, 30, 22),
+  Puntuacion = c(80, 95, 75)
+)
+
+# Mostrar el DataFrame original
+print("DataFrame Original:")
+print(df)
+
+# Nueva fila que quieres añadir
+nueva_fila <- data.frame(
+  Nombre = "Ana",
+  Edad = 28,
+  Puntuacion = 90
+)
+
+# Añadir la nueva fila al DataFrame original
+df <- rbind(df, nueva_fila)
+
+# Mostrar el DataFrame después de añadir la nueva fila
+print("DataFrame con la Nueva Fila:")
+print(df)
 
 ```
 
 Add a column to a DF!
 ```{r}
+# Crear un DataFrame de ejemplo
+df <- data.frame(
+  Nombre = c("Juan", "María", "Carlos"),
+  Edad = c(25, 30, 22),
+  Puntuacion = c(80, 95, 75)
+)
+
+# Mostrar el DataFrame original
+print("DataFrame Original:")
+print(df)
+
+# Crear una nueva columna
+nueva_columna <- c(10, 20, 30)
+
+# Añadir la nueva columna al DataFrame
+df <- cbind(df, NuevaColumna = nueva_columna)
+
+# Mostrar el DataFrame después de añadir la nueva columna
+print("DataFrame con la Nueva Columna:")
+print(df)
+
 
 ```
 
 Add a new element to a List!
 ```{r}
+# Crear un DataFrame de ejemplo
+df <- data.frame(
+  Nombre = c("Juan", "María", "Carlos"),
+  Edad = c(25, 30, 22),
+  Puntuacion = c(80, 95, 75)
+)
+
+# Mostrar el DataFrame original
+print("DataFrame Original:")
+print(df)
+
+# Modificar un elemento específico en el DataFrame
+nueva_puntuacion <- 90
+df[2, "Puntuacion"] <- nueva_puntuacion
+
+# Mostrar el DataFrame después de la modificación
+print("DataFrame Modificado:")
+print(df)
 
 ```
 
